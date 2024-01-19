@@ -1,3 +1,4 @@
+const ejsMate = require('ejs-mate');
 const express = require('express');
 const methodOverride = require('method-override');
 const mongoose = require('mongoose');
@@ -16,6 +17,7 @@ mongoose.connect('mongodb://127.0.0.1/denpiw')
         console.log(err);
     });
 
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
@@ -69,21 +71,6 @@ app.delete('/places/:id', async (req, res) => {
 })
 
 
-
-
-
-// app.get('/seed/place', async (req, res) => {
-//     const place = new Place({
-//         title: 'Empire State Building',
-//         price : '$999',
-//         description: 'A great building',
-//         location: 'New York, NY',
-//     })
-//     await place.save();
-//     res.send(place);
-
-
-// })
 
 
 app.listen(2003,()=> {
