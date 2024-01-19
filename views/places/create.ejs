@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denpiw | Add Place</title>
+</head>
+<body>
+
+    <h1>Add place</h1>
+    <form action="/places" method="POST">
+        <div class="">
+            <label for="title">Title</label>
+            <input type="text" name="place[title]" id="title">
+        </div>
+        <div class="">
+            <label for="price">Price</label>
+            <input type="text" name="place[price]" id="price">
+        </div>
+        <div class="">
+            <label for="location">Location</label>
+            <input type="text" name="place[location]" id="location">
+        </div>
+        <button type="submit">Save</button>
+    </form>
+    
+</body>
+</html>
