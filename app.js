@@ -23,18 +23,18 @@ app.get('/', (req, res) => {
     res.render('home')
 });
 
-app.get('/seed/place', async (req, res) => {
-    const place = new Place({
-        title: 'Empire State Building',
-        price : '$999',
-        description: 'A great building',
-        location: 'New York, NY',
-    })
-    await place.save();
-    res.send(place);
+// app.get('/seed/place', async (req, res) => {
+//     const place = new Place({
+//         title: 'Empire State Building',
+//         price : '$999',
+//         description: 'A great building',
+//         location: 'New York, NY',
+//     })
+//     await place.save();
+//     res.send(place);
 
 
-})
+// })
 
 
 app.listen(2003,()=> {
