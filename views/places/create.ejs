@@ -1,24 +1,244 @@
 <% layout('layouts/app') %>
 
-<br />
-<br />
-<br />
-<br />
+<style>
+  .wrapper {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
 
-    <h1>Add place</h1>
-    <form action="/places" method="POST">
-        <div class="">
-            <label for="title">Title</label>
-            <input type="text" name="place[title]" id="title">
-        </div>
-        <div class="">
-            <label for="price">Price</label>
-            <input type="text" name="place[price]" id="price">
-        </div>
-        <div class="">
-            <label for="location">Location</label>
-            <input type="text" name="place[location]" id="location">
-        </div>
-        <button type="submit">Save</button>
-    </form>
- 
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/beach.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(3px); 
+  }
+
+
+  .form {
+    display: flex;
+    margin: 150px auto;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+  }
+
+  .title {
+    font-size: 28px;
+    color: #00a5c1;
+    font-weight: 600;
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+  }
+
+  .title::before,
+  .title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #00a5c1;
+  }
+
+  .title::before {
+    width: 18px;
+    height: 18px;
+    background-color: #00a5c1;
+  }
+
+  .title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+  }
+
+  .message,
+  .signin {
+    color: rgba(88, 87, 87, 0.822);
+    font-size: 14px;
+  }
+
+  .signin {
+    text-align: center;
+  }
+
+  .signin a {
+    color: #00a5c1;
+  }
+
+  .signin a:hover {
+    text-decoration: underline #00a5c1;
+  }
+
+  .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+  }
+
+  .form label {
+    position: relative;
+  }
+
+  .input {
+    width: 100%;
+    height: 45px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1.5px solid lightgrey;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: 0px 0px 20px -18px;
+  }
+
+  .input:hover {
+    border: 2px solid lightgrey;
+    box-shadow: 0px 0px 20px -17px;
+  }
+
+  .input:active {
+    transform: scale(0.95);
+  }
+
+  .input:focus {
+    border: 2px solid grey;
+  }
+
+  .submit {
+    margin-top: 10px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: #00a5c1;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    border: 3px solid #ffffff4d;
+    outline: none;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .submit:hover {
+    transform: scale(1.05);
+    border-color: #fff9;
+  }
+
+  .submit:hover .icon {
+    transform: translate(4px);
+  }
+
+  .submit:hover::before {
+    animation: shine 1.5s ease-out infinite;
+  }
+
+  .submit::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100px;
+    }
+
+    60% {
+      left: 100%;
+    }
+
+    to {
+      left: 100%;
+    }
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+  .back-btn {
+  text-decoration: none;
+  position: absolute;
+  top: 10px; 
+  left: 10px; 
+}
+</style>
+
+<div class="wrapper">
+  <div class="background-image"></div>
+  <a href="/places" class="back-btn">
+   <button class="submit">back</button>
+ </a>
+  <form class="form" action="/places" method="POST">
+    <p class="title">Add Places</p>
+
+    <label>
+      <input
+        type="text"
+        class="input"
+        name="place[title]"
+        id="title"
+        placeholder="Title"
+      />
+    </label>
+
+    <label>
+      <input
+        type="text"
+        class="input"
+        name="place[price]"
+        id="price"
+        placeholder="Price"
+      />
+    </label>
+    <label>
+      <input
+        type="text"
+        class="input"
+        name="place[location]"
+        id="location"
+        placeholder="Location"
+      />
+    </label>
+    <button class="submit" type="submit">Save</button>
+  </form>
+</div>

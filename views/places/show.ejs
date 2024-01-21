@@ -1,15 +1,191 @@
 <% layout('layouts/app') %>
 
-<br />
-<br />
-<br />
-<br />
+<style>
+  .wrap-card {
+    margin: auto;
+  }
 
-    <h1 class="text-red-700 text-2xl"> <%= place.title %> </h1>
-    <h2> <%= place.price %> </h2>
-    <h2> <%= place.location %> </h2>
-    <form action="/places/<%= place._id %>?_method=DELETE" method="POST" style="display: inline!important;">
-        <button type="submit">Delete</button>
-    </form>
-    <a href="/places/<%= place._id %>/edit">Edit</a>
-    <a href="/places">All Places</a>
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("/img/beach.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: blur(3px);
+  }
+
+  .card {
+    --main-color: black;
+    --submain-color: black;
+    --bg-color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+    position: relative;
+    width: 100%; /* Menggunakan persentase untuk responsivitas lebar */
+    max-width: 500px; /* Batas maksimal lebar kartu */
+    height: auto; /* Menggunakan tinggi otomatis agar dapat menyesuaikan kontennya */
+    display: flex;
+    padding-bottom: 2em;
+    flex-direction: column;
+    border-radius: 20px;
+    background: var(--bg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Menambahkan bayangan */
+    margin: auto;
+    padding: 20px;
+  }
+
+  /* Menambahkan aturan media query untuk penyesuaian tata letak pada perangkat dengan lebar layar kecil */
+  @media (max-width: 600px) {
+    .card {
+      width: 90%; /* Mengubah lebar pada layar kecil */
+    }
+  }
+
+  .card__img {
+    height: 192px;
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+  }
+
+  .card__title {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--main-color);
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .card__subtitle {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: left;
+    color: var(--submain-color);
+  }
+
+  .card__wrapper {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    justify-content: end;
+  }
+
+  .submit {
+    margin-top: 10px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: #00a5c1;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    border: 3px solid #ffffff4d;
+    outline: none;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .submit:hover {
+    transform: scale(1.05);
+    border-color: #fff9;
+  }
+
+  .submit:hover .icon {
+    transform: translate(4px);
+  }
+
+  .submit:hover::before {
+    animation: shine 1.5s ease-out infinite;
+  }
+
+  .submit::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100px;
+    }
+
+    60% {
+      left: 100%;
+    }
+
+    to {
+      left: 100%;
+    }
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+  .edit-btn {
+    text-decoration: none; /* Menghapus dekorasi tautan */
+  }
+
+  .back-btn {
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+</style>
+
+<div class="wrap-card">
+  <div class="background-image"></div>
+  <a href="/places" class="back-btn">
+    <button class="submit">back</button>
+  </a>
+  <div class="card">
+    <div class="card__title"><%= place.title %></div>
+    <img src="/img/beach.png" alt="" class="card__img" />
+    <div class="card__subtitle"><%= place.location %></div>
+    <div class="card__subtitle"><%= place.description %></div>
+    <div class="card__subtitle">Rp.<%= place.price %></div>
+    <div class="card__wrapper">
+      <a href="/places/<%= place._id %>/edit" class="edit-btn"
+        ><button class="submit">&nbsp Edit &nbsp</button></a
+      >
+      <form
+        action="/places/<%= place._id %>?_method=DELETE"
+        method="POST"
+        style="display: inline !important"
+      >
+        <button class="submit" type="submit">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>

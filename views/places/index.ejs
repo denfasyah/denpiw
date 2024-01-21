@@ -1,80 +1,177 @@
-<% layout('layouts/app') %>
 
 
+<% layout('layouts/app')%>
+<%- include('../layouts/components/navbar') %>
+<style>
 
+.title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    margin-top: 20px;
+}
+ .row {
+  margin-top: 50px;
+ }
+  .card {
+    --main-color: black;
+    --submain-color: black;
+    --bg-color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+      sans-serif;
+    position: relative;
+    width: 100%; /* Menggunakan persentase untuk responsivitas lebar */
+    max-width: 300px; /* Batas maksimal lebar kartu */
+    height: auto; /* Menggunakan tinggi otomatis agar dapat menyesuaikan kontennya */
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    background: var(--bg-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8); /* Menambahkan bayangan */
+    margin: 10px auto;
+    transition: transform 0.3s ease;
+  }
 
-<div class="carousel w-full">
-  <div id="slide1" class="carousel-item relative w-full ">
-    <img src="/img/beach.png" class="w-full" />
-    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide4" class="btn btn-circle">❮</a> 
-      <a href="#slide2" class="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide2" class="carousel-item relative w-full">
-    <img src="/img/beach.png" class="w-full" />
-    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide1" class="btn btn-circle">❮</a> 
-      <a href="#slide3" class="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide3" class="carousel-item relative w-full">
-    <img src="https://daisyui.com/images/stock/photo-1414694762283-acccc27bca85.jpg" class="w-full" />
-    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide2" class="btn btn-circle">❮</a> 
-      <a href="#slide4" class="btn btn-circle">❯</a>
-    </div>
-  </div> 
-  <div id="slide4" class="carousel-item relative w-full">
-    <img src="https://daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.jpg" class="w-full" />
-    <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-      <a href="#slide3" class="btn btn-circle">❮</a> 
-      <a href="#slide1" class="btn btn-circle">❯</a>
-    </div>
-  </div>
-</div>
+  .card:hover {
+  transform: scale(1.05); /* Membesar saat hover */
+}
 
+/* Pilih efek hover sesuai dengan preferensi Anda */
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8); /* Mengganti bayangan saat hover */
+}
 
-<div class="container mt-5">
-  <h1 class="text-center font-bold text-4xl text-cyan-500">All Places</h1>
-  <a href="/places/create">Add Place</a>
+  /* Menambahkan aturan media query untuk penyesuaian tata letak pada perangkat dengan lebar layar kecil */
+  @media (max-width: 600px) {
+    .card {
+      width: 90%; /* Mengubah lebar pada layar kecil */
+    }
+  }
 
+  .card-img-top {
+    height: 192px;
+    width: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    object-fit: cover;
+  }
 
-  <div class="flex items-center justify-center p-5">
-    <div class="rounded-lg  p-5">
-      <div class="flex">
-        <div class="flex w-10 items-center justify-center rounded-tl-lg rounded-bl-lg border-r border-cyan-500 bg-gray-200 p-5">
-          <svg viewBox="0 0 20 20" aria-hidden="true" class="pointer-events-none absolute w-5 fill-cyan-500 transition">
-            <path d="M16.72 17.78a.75.75 0 1 0 1.06-1.06l-1.06 1.06ZM9 14.5A5.5 5.5 0 0 1 3.5 9H2a7 7 0 0 0 7 7v-1.5ZM3.5 9A5.5 5.5 0 0 1 9 3.5V2a7 7 0 0 0-7 7h1.5ZM9 3.5A5.5 5.5 0 0 1 14.5 9H16a7 7 0 0 0-7-7v1.5Zm3.89 10.45 3.83 3.83 1.06-1.06-3.83-3.83-1.06 1.06ZM14.5 9a5.48 5.48 0 0 1-1.61 3.89l1.06 1.06A6.98 6.98 0 0 0 16 9h-1.5Zm-1.61 3.89A5.48 5.48 0 0 1 9 14.5V16a6.98 6.98 0 0 0 4.95-2.05l-1.06-1.06Z"></path>
-          </svg>
-        </div>
-        <input type="text" class="w-full  bg-gray-200 pl-2 text-base font-semibold outline-0" placeholder="" id="">
-        <input type="button" value="Search" class="bg-cyan-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-cyan-800 transition-colors">
-      </div>
-    </div>
-  </div>
+  .card-title {
+    margin-bottom: 20px;
+    font-weight: 500;
+    font-size: 20px;
+    color: var(--main-color);
+    text-align: center;
+    font-weight: bold;
+  }
 
-  <div class="flex flex-wrap mt-5 mx-4">
-    <% for(const place of places) { %>
-      <div class="w-full md:w-1/2 lg:w-1/4 px-4 mb-8">
-        <a href="/places/<%=place._id %>">
-        <div class="flex card bg-base-100 shadow-xl">
-          <figure><img src="/img/beach.png" alt="Shoes" /></figure>
+  .card-link{
+    text-decoration: none;
+  }
+
+  .submit {
+    margin-top: 10px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+    padding-block: 0.5rem;
+    padding-inline: 1.25rem;
+    background-color: #00a5c1;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffff;
+    gap: 10px;
+    font-weight: bold;
+    border: 3px solid #ffffff4d;
+    outline: none;
+    overflow: hidden;
+    font-size: 15px;
+  }
+
+  .submit:hover {
+    transform: scale(1.05);
+    border-color: #fff9;
+  }
+
+  .submit:hover .icon {
+    transform: translate(4px);
+  }
+
+  .submit:hover::before {
+    animation: shine 1.5s ease-out infinite;
+  }
+
+  .submit::before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    background-image: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0) 70%
+    );
+    top: 0;
+    left: -100px;
+    opacity: 0.6;
+  }
+
+  @keyframes shine {
+    0% {
+      left: -100px;
+    }
+
+    60% {
+      left: 100%;
+    }
+
+    to {
+      left: 100%;
+    }
+  }
+
+  @keyframes pulse {
+    from {
+      transform: scale(0.9);
+      opacity: 1;
+    }
+
+    to {
+      transform: scale(1.8);
+      opacity: 0;
+    }
+  }
+
+  .card-body-link{
+    text-decoration: none;
+  }
+</style>
+
+<div class="container">
+<h1 class="title">All Places</h1>
+<a href="/places/create">Add Place</a>
+
+<div class="row">
+  <% for(const place of places) { %>
+    <div class="col-md-3 mb-4">
+      <a href="/places/<%= place._id %>" class="card-link">
+        <div class="card">
+          <img src="/img/beach.png" alt="" class="card-img-top" />
           <div class="card-body">
-            <h2 class="card-title line-clamp-1  ">
-              <%= place.title %>
-              <div class="badge badge-secondary">NEW</div>
-            </h2>
-            <p class="line-clamp-2"><%= place.description %></p>
-            <div class="card-actions justify-end">
-              <div class="badge badge-outline"> Rp <%= place.price %></div>
-            </div>
+            <h5 class="card-title"><%= place.title %></h5>
+            <a href="/places/<%= place._id %>" class="card-body-link">
+            <button class="submit">View More</button>
+          </a>
           </div>
         </div>
       </a>
-      </div>
-    <% } %>
-  </div>
-  
-
+    </div>
+  <% } %>
 </div>
+</div>
+
+<%-include('../layouts/components/footer') %>
