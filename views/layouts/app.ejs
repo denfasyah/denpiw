@@ -7,6 +7,78 @@
     <link rel="stylesheet" href="./styles/style.css">
   </head>
   <body>
+    <!-- navbar -->
+    <div class="banner">
+      <div class="navbar  bg-cyan-600 shadow-md fixed z-30">
+        <div class="container navbar-start">
+          <a href="/" class="btn btn-ghost text-xl text-white">Denpiw</a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+          <ul class="menu menu-horizontal px-1">
+            <li>
+              <a
+                href="/"
+                class="text-white transition duration-300 ease-in-out hover:bg-primary focus:bg-primary"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/places"
+                class="text-white transition duration-300 ease-in-out hover:bg-primary focus:bg-primary"
+                >Places</a
+              >
+            </li>
+            
+          </ul>
+        </div>
+        <div class="container navbar-end relative">
+            <a
+              href="#contact"
+              class="text-white transition duration-300 ease-in-out hover:bg-primary focus:bg-primary"
+              >Login</a
+            >
+          <div class="dropdown">
+            <div tabindex="0" role="button" class="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7 text-white font-bold"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </div>
+            <ul
+              tabindex="0"
+              class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow rounded-box w-52 overflow-y-auto right-0 origin-top-right absolute bg-base-100"
+            >
+              <li>
+                <a class="text-white hover:bg-primary focus:bg-primary">Home</a>
+              </li>
+              <li>
+                <a class="text-white hover:bg-primary focus:bg-primary"
+                  >Places</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end navbar -->
     <%- body %>
+
+    <footer class="footer footer-center p-4 bg-cyan-600 text-white">
+      <aside>
+        <p>Copyright © 2024 - All right reserved by ACME Industries Ltd</p>
+      </aside>
+    </footer>
   </body>
 </html>

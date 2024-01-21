@@ -11,12 +11,13 @@ const Place = require('./models/place');
 
 // connect mongo
 mongoose.connect('mongodb://127.0.0.1/denpiw')
-    .then((result) => {
-        console.log('connected successfully');
+    .then(() => {
+        console.log('connected db successfully');
     }).catch((err) => {
         console.log(err);
     });
 
+// engine
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +27,7 @@ app.use(express.urlencoded({ extended : true }));
 app.use(methodOverride('_method'))
 app.use(express.static(path.join(__dirname,'public')));
 
-
+// route
 app.get('/', (req, res) => {
     res.render('home')
 });
@@ -34,7 +35,6 @@ app.get('/', (req, res) => {
 app.get('/places', async (req, res) => {
     const places = await Place.find();
     res.render('places/index',{places});
-    console.log(places);
 
 });
 
