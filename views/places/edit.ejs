@@ -204,44 +204,67 @@
 </style>
 
 <div class="wrapper">
-  <div class="background-image"></div>
-  <a href="/places/<%=place._id %>" class="back-btn">
-    <button class="submit">back</button>
-  </a>
-  <form class="form" action="/places/<%=place._id %>?_method=PUT" method="POST">
-    <p class="title">Edit Places</p>
-
-    <label>
-      <input
-        type="text"
-        class="input"
-        name="place[title]"
-        id="title"
-        placeholder="Title"
-        value="<%= place.title %>"
-      />
-    </label>
-
-    <label>
-      <input
-        type="text"
-        class="input"
-        name="place[price]"
-        id="price"
-        placeholder="Price"
-        value="<%= place.price %>"
-      />
-    </label>
-    <label>
-      <input
-        type="text"
-        class="input"
-        name="place[location]"
-        id="location"
-        placeholder="Location"
-        value="<%= place.location %>"
-      />
-    </label>
-    <button class="submit" type="submit">Save</button>
-  </form>
-</div>
+    <div class="background-image"></div>
+    <a href="/places/<%=place._id %>" class="back-btn">
+      <button class="submit">Back</button>
+    </a>
+    <form class="form" action="/places/<%=place._id %>?_method=PUT" method="POST" id="editForm">
+      <p class="title">Edit Places</p>
+  
+      <label>
+        <input
+          type="text"
+          class="input"
+          name="place[title]"
+          id="title"
+          placeholder="Title"
+          value="<%= place.title %>"
+          required
+        />
+      </label>
+  
+      <label>
+        <input
+          type="text"
+          class="input"
+          name="place[price]"
+          id="price"
+          placeholder="Price"
+          value="<%= place.price %>"
+          required
+        />
+      </label>
+      <label>
+        <input
+          type="text"
+          class="input"
+          name="place[location]"
+          id="location"
+          placeholder="Location"
+          value="<%= place.location %>"
+          required
+        />
+      </label>
+      <button class="submit" type="submit">Save</button>
+    </form>
+  
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        var editForm = document.getElementById('editForm');
+  
+        editForm.addEventListener('submit', function (event) {
+          if (!editForm.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+  
+          editForm.classList.add('was-validated');
+        });
+  
+        editForm.addEventListener('input', function () {
+          editForm.classList.remove('was-validated');
+        });
+      });
+    </script>
+  </div>
+  

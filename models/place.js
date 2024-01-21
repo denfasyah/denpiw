@@ -3,9 +3,14 @@ const Schema = mongoose.Schema;
 
 const placeSchema = new Schema({
     title : String,
-    price : String,
+    price : Number,
     description : String,
     location : String,
+    image :String,
+    reviews : [{
+        type : Schema.Types.ObjectId,
+        ref : 'Review'
+    }]
 })
 
 
